@@ -17,6 +17,14 @@ class UserFinder extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      this.setFilteredUsers(
+        DUMMY_USERS.filter((user) => user.name.includes(this.state.searchTerm))
+      );
+    }
+  }
+
   searchChangeHandler(e) {
     this.setState({ searchTerm: e.target.value });
   }
